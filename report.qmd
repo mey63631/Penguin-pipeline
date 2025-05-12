@@ -1,0 +1,25 @@
+---
+title: "Penguins Analysis"
+format: html
+execute:
+  echo: true
+---
+
+```{r}
+library(targets)
+library(gtsummary)
+tar_read(clean_data)
+```
+
+```{r}
+#| results: asis
+
+tar_load(models)
+
+lapply(models, function(input) {
+   tbl_regression(input)
+})
+
+
+
+```
